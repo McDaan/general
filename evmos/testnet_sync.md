@@ -88,3 +88,8 @@ Name: "v13.0.0-rc2"
 Height: 14894679
 Binary version: v13.0.0-rc2
 https://testnet.mintscan.io/evmos-testnet/proposals/189
+
+Name: "v13.0.0-rc3"
+Height: 14956000
+Binary version: v13.0.0-rc3
+https://testnet.mintscan.io/evmos-testnet/proposals/190
