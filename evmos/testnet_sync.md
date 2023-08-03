@@ -100,3 +100,8 @@ Binary version: v13.0.0
 https://testnet.mintscan.io/evmos-testnet/proposals/192
 
 -- Upgrade to v13.0.1
+
+Name: "v14.0.0-rc1"
+Height: 16092000
+Binary version: v14.0.0-rc1
+https://testnet.mintscan.io/evmos-testnet/proposals/194
