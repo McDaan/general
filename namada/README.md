@@ -14,9 +14,9 @@ sudo systemctl start namadad
 ```
 
 ## Testing shielding, shielded and unshielding transfers
-***
+
 ### Generating a new Spending Key
-***
+---
 ```
 namadaw masp gen-key --alias testmasp
 namadaw masp gen-key --alias testmasp2
