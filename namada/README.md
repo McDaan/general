@@ -23,8 +23,8 @@ namadaw masp gen-key --alias testmasp2
 
 A Viewing Key will also be generated sharing the same alias:
 - Spending Key alias: *testmasp* & *testmasp2*  
-- Viewing Key alias: *testmasp* & *testmasp2*  
-
+- Viewing Key alias: *testmasp* & *testmasp2*
+  
 ## Generating a payment address
 Creating a payment address from the Spending Key (command will generate a different payment address each time you run it - they can be reused or discarded, and relationship between them can't be deciphered w/o the Spending Key):
 ```
@@ -40,12 +40,12 @@ namadaw masp gen-addr \
     --key testmasp2 \
     --alias testmasp-addr2
 ```	
-	
-- Spending Key/Viewing Key alias used to generate the payment address: *testmasp*  
-- Payment address alias: *testmasp-addr*  
+
+Spending Key/Viewing Key alias used to generate the payment address: *testmasp*  
+Payment address alias: *testmasp-addr*  
   
-- Spending Key/Viewing Key alias used to generate the payment address: *testmasp2*  
-- Payment address alias: *testmasp-addr2*  
+Spending Key/Viewing Key alias used to generate the payment address: *testmasp2*  
+Payment address alias: *testmasp-addr2*  
 
 ## Shielding transfer
 Sending funds from a transparent address to a shielded one:
@@ -92,7 +92,7 @@ namadac transfer \
 Note: here I used a newly created address to be the signer - I just tried signing with the validator address and it works too.
 
 ## Flow of the sent assets
-*mandragora* > *testmasp* > *testmasp2* > *mandragora*
+*mandragora* > *testmasp* (*testmasp-addr*) > *testmasp2*(*testmasp-addr2*) > *mandragora*
 
 
 
