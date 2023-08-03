@@ -26,7 +26,7 @@ A Viewing Key will also be generated sharing the same alias:
 - Viewing Key alias: *testmasp* & *testmasp2*
   
 ## Generating a payment address
-Creating a payment address from the Spending Key (command will generate a different payment address each time you run it - they can be reused or discarded, and relationship between them can't be deciphered w/o the Spending Key):
+Generating a payment address from the Spending Key (command will generate a different payment address each time you run it - they can be reused or discarded, and relationship between them can't be deciphered w/o the Spending Key):
 ```
 namadaw masp gen-addr \
     --key testmasp \
@@ -34,7 +34,7 @@ namadaw masp gen-addr \
 ```
 	
 ## Generating a second payment address
-Creating a second payment address to test shielded-to-shielded transfers:
+Generating a second payment address to test shielded-to-shielded transfers:
 ```
 namadaw masp gen-addr \
     --key testmasp2 \
