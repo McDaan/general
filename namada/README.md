@@ -55,7 +55,7 @@ namadac transfer \
     --target testmasp-addr \
     --token NAM \
     --amount 200
-```
+```  
   
 Checking shielded balance (*testmasp*)
 ```
@@ -72,7 +72,7 @@ namadac transfer \
     --amount 100 \
     --signer test
 ```
-Note: here I used a newly created address to be the signer - I just tried signing with the validator address and it works too.
+Note: here I used a newly created address to be the signer - I just tried signing with the validator address and it works too.  
   
 Checking shielded balance (*testmasp2*)
 ```
