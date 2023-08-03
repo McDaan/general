@@ -21,9 +21,9 @@ namadaw masp gen-key --alias testmasp
 namadaw masp gen-key --alias testmasp2
 ```
 
-A Viewing Key will also be generated sharing the same alias
-Spending Key alias: *testmasp* & *testmasp2*
-Viewing Key alias: *testmasp* & *testmasp2*
+A Viewing Key will also be generated sharing the same alias  
+Spending Key alias: *testmasp* & *testmasp2*  
+Viewing Key alias: *testmasp* & *testmasp2*  
 
 ### Creating a payment address
 Creating a payment address from the Spending Key (command will generate a different payment address each time you run it - they can be reused or discarded, and relationship between them can't be deciphered w/o the Spending Key):
@@ -41,11 +41,11 @@ namadaw masp gen-addr \
     --alias testmasp-addr2
 ```	
 	
-Spending Key/Viewing Key alias used to generate the payment address: *testmasp*
-Payment address alias: *testmasp-addr*
-
-Spending Key/Viewing Key alias used to generate the payment address: *testmasp2*
-Payment address alias: *testmasp-addr2*
+Spending Key/Viewing Key alias used to generate the payment address: *testmasp*  
+Payment address alias: *testmasp-addr*  
+  
+Spending Key/Viewing Key alias used to generate the payment address: *testmasp2*  
+Payment address alias: *testmasp-addr2*  
 
 ### Shielding transfer
 Sending funds from a transparent address to a shielded one:
