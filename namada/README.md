@@ -32,6 +32,8 @@ namadaw masp gen-addr \
     --key testmasp \
     --alias testmasp-addr
 ```
+Spending Key/Viewing Key alias used to generate the payment address: *testmasp*  
+Payment address alias: *testmasp-addr*  
 	
 ### Generating a second payment address
 Generating a second payment address to test shielded-to-shielded transfers:
@@ -40,10 +42,6 @@ namadaw masp gen-addr \
     --key testmasp2 \
     --alias testmasp-addr2
 ```	
-
-Spending Key/Viewing Key alias used to generate the payment address: *testmasp*  
-Payment address alias: *testmasp-addr*  
-  
 Spending Key/Viewing Key alias used to generate the payment address: *testmasp2*  
 Payment address alias: *testmasp-addr2*  
 
