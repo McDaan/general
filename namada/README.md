@@ -1,4 +1,4 @@
-# General information for Namada
+## General information for Namada
 
 Current chain-id: **public-testnet-11.cc649ddd49b0**
 
