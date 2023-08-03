@@ -15,7 +15,7 @@ sudo systemctl start namadad
 
 # Testing shielding, shielded and unshielding transfers
 
-## Generating a new Spending Key
+## Generating new Spending Keys
 ```
 namadaw masp gen-key --alias testmasp
 namadaw masp gen-key --alias testmasp2
@@ -72,7 +72,7 @@ namadac transfer \
     --amount 100 \
     --signer test
 ```
-Note: here I used a newly created address to be the signer - I just tried signing with the validator address and it works too.  
+Note: here I used a newly created address to be the signer - I just tried signing with the validator address (*mandragora* in this case) and it works too.  
   
 Checking shielded balance (*testmasp2*)
 ```
