@@ -33,7 +33,7 @@ namadaw masp gen-addr \
     --alias testmasp-addr
 ```
 	
-## Generating a second payment address
+### Generating a second payment address
 Generating a second payment address to test shielded-to-shielded transfers:
 ```
 namadaw masp gen-addr \
