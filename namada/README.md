@@ -92,7 +92,7 @@ namadac transfer \
 Note: here I used a newly created address to be the signer - I just tried signing with the validator address (*mandragora* in this case) and it works too.
 
 ## Flow of the sent assets
-*mandragora* > *testmasp* (*testmasp-addr*) > *testmasp2*(*testmasp-addr2*) > *mandragora*
+*mandragora* > *testmasp* (*testmasp-addr*) > *testmasp2* (*testmasp-addr2*) > *mandragora*
 
 
 
