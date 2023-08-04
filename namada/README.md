@@ -113,7 +113,7 @@ Note: you don't need to use the *--genesis-validator* flag if you are not a pre-
   
 **Start your node, wait 30-60s, and stop it**
   
-## Re-join the network
+## Applying the snapshot
 ```
 cd $HOME/snapshot
 mv db/ $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0
