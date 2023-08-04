@@ -117,7 +117,6 @@ Note: you don't need to use the *--genesis-validator* flag if you are not a pre-
 ```
 rm -rf $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/db
 rm -rf $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/cometbft/data
-
 cd $HOME/snapshot
 mv db/ $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0
 mv data/ $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/cometbft
