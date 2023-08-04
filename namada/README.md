@@ -105,6 +105,8 @@ cp -r $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/cometbft/data $HO
   
 ## Re-join the network
 ```
+cd $HOME/.local/share/namada
+rm -rf public-testnet-11.cc649ddd49b0/ && rm public-testnet-11.cc649ddd49b0.toml && cd
 namadac utils join-network --chain-id <chain-id> --genesis-validator <your-validator-alias>
 ```
 Note: you don't need to use the *--genesis-validator* flag if you are not a pre-genesis validator.
