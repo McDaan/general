@@ -99,8 +99,8 @@ Note: here I used a newly created address to be the signer - I just tried signin
 ## Saving the snapshot files
 ```
 mkdir $HOME/snapshot
-cp -r $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/db $HOME/snapshot
-cp -r $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/cometbft/data $HOME/snapshot
+mv $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/db $HOME/snapshot
+mv $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/cometbft/data $HOME/snapshot
 ```
   
 ## Re-join the network
@@ -115,6 +115,8 @@ Note: you don't need to use the *--genesis-validator* flag if you are not a pre-
   
 ## Applying the snapshot
 ```
+rm -rf $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/db
+rm -rf $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/cometbft/data
 cd $HOME/snapshot
 mv db/ $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0
 mv data/ $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/cometbft
