@@ -92,5 +92,32 @@ Note: here I used a newly created address to be the signer - I just tried signin
 ## Flow of the sent assets
 *mandragora* > *testmasp* (*testmasp-addr*) > *testmasp2* (*testmasp-addr2*) > *mandragora*
 
+# Local snapshot solution
+
+**Stop your node**
+
+## Saving the snapshot files
+```
+mkdir $HOME/snapshot
+cp -r $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/db $HOME/snapshot
+cp -r $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/cometbft/data $HOME/snapshot
+```
+  
+## Re-join the network
+```
+namadac utils join-network --chain-id <chain-id> --genesis-validator <your-validator-alias>
+```
+Note: you don't need to use the *--genesis-validator* flag if you are not a pre-genesis validator.
+  
+**Start your node, wait 30-60s, and stop it**
+  
+## Re-join the network
+```
+cd $HOME/snapshot
+mv db/ $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0
+mv data/ $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/cometbft
+```
+  
+**Start your node**
 
 
