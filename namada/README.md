@@ -1,13 +1,13 @@
 # General information for Namada
 
-Current chain-id: **public-testnet-11.cc649ddd49b0**
+Current chain-id: **public-testnet-12.fedec12f3428**
 
 # Adding a new addrbook file
 
 ```
 sudo systemctl stop namadad
 
-wget -O $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/cometbft/config/addrbook.json https://raw.githubusercontent.com/McDaan/general/main/namada/addrbook.json
+wget -O $HOME/.local/share/namada/public-testnet-12.fedec12f3428/cometbft/config/addrbook.json https://raw.githubusercontent.com/McDaan/general/main/namada/addrbook.json
 
 sudo systemctl start namadad
 
@@ -98,16 +98,17 @@ Note: here I used a newly created address to be the signer - I just tried signin
 
 ## Saving the snapshot files
 ```
+CHAIN_ID=public-testnet-12.fedec12f3428
 mkdir $HOME/snapshot
-mv $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/db $HOME/snapshot
-mv $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/cometbft/data $HOME/snapshot
+mv $HOME/.local/share/namada/$CHAIN_ID/db $HOME/snapshot
+mv $HOME/.local/share/namada/$CHAIN_ID/cometbft/data $HOME/snapshot
 ```
   
 ## Re-join the network
 ```
 cd $HOME/.local/share/namada
-rm -rf public-testnet-11.cc649ddd49b0/ && rm public-testnet-11.cc649ddd49b0.toml && rm global-config.toml && cd
-namadac utils join-network --chain-id public-testnet-11.cc649ddd49b0 --genesis-validator <your-validator-alias>
+rm -rf $CHAIN_ID/ && rm $CHAIN_ID.toml && rm global-config.toml && cd
+namadac utils join-network --chain-id $CHAIN_ID --genesis-validator <your-validator-alias>
 ```
 Note: you don't need to use the *--genesis-validator* flag if you are not a pre-genesis validator.
   
@@ -115,11 +116,11 @@ Note: you don't need to use the *--genesis-validator* flag if you are not a pre-
   
 ## Applying the snapshot
 ```
-rm -rf $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/db
-rm -rf $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/cometbft/data
+rm -rf $HOME/.local/share/namada/$CHAIN_ID/db
+rm -rf $HOME/.local/share/namada/$CHAIN_ID/cometbft/data
 cd $HOME/snapshot
-mv db/ $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0
-mv data/ $HOME/.local/share/namada/public-testnet-11.cc649ddd49b0/cometbft
+mv db/ $HOME/.local/share/namada/$CHAIN_ID
+mv data/ $HOME/.local/share/namada/$CHAIN_ID/cometbft
 ```
   
 **Start your node**
