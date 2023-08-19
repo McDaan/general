@@ -10,7 +10,6 @@ sudo systemctl stop namadad
 wget -O $HOME/.local/share/namada/public-testnet-12.fedec12f3428/cometbft/config/addrbook.json https://raw.githubusercontent.com/McDaan/general/main/namada/addrbook.json
 
 sudo systemctl start namadad
-
 ```
 
 # Testing shielding, shielded and unshielding transfers
@@ -68,9 +67,9 @@ namadac transfer \
     --target testmasp-addr2 \
     --token NAM \
     --amount 100 \
-    --signer test
+    --signing-keys test
 ```
-Note: here I used a newly created address to be the signer - I just tried signing with the validator address (*mandragora* in this case) and it works too.  
+Note: here I used a newly created key to be the signer and gas payer. I just tried signing with the validator key (*mandragora-validator-key* in this case) and it works too.  
   
 Checking shielded balance (*testmasp2*)
 ```
@@ -85,9 +84,9 @@ namadac transfer \
     --target mandragora \
     --token NAM \
     --amount 50 \
-    --signer test
+    --signing-keys test
 ```
-Note: here I used a newly created address to be the signer - I just tried signing with the validator address (*mandragora* in this case) and it works too.
+Note: here I used a newly created key to be the signer and gas payer. I just tried signing with the validator key (*mandragora-validator-key* in this case) and it works too.  
 
 ## Flow of the sent assets
 *mandragora* > *testmasp* (*testmasp-addr*) > *testmasp2* (*testmasp-addr2*) > *mandragora*
