@@ -4,12 +4,12 @@ Sync from scratch (Evmos testnet - chain_id: evmos_9000-4)
 
 Name: "tv3"
 Height: 976000
-Binary version: v3.0.0
+Binary version: *v3.0.0*
 https://testnet.mintscan.io/evmos-testnet/proposals/11
 
 Name: "v4.0.0"
 Height: 1200000
-Binary version: v4.0.1 (thanks to Rok)
+Binary version: *v4.0.1* (thanks to Rok)
 https://testnet.mintscan.io/evmos-testnet/proposals/19
 
 Name: "v5.0.0"
@@ -39,7 +39,7 @@ https://testnet.mintscan.io/evmos-testnet/proposals/72
 
 Name: "v8.2.0"
 Height: 8037000
-Binary version: v8.2.3
+Binary version: *v8.2.3*
 https://testnet.mintscan.io/evmos-testnet/proposals/93
 
 Name: "v9.1.0"
@@ -105,3 +105,8 @@ Name: "v14.0.0-rc1"
 Height: 16092000
 Binary version: v14.0.0-rc1
 https://testnet.mintscan.io/evmos-testnet/proposals/194
+
+Name: "v14.0.0-rc2"
+Height: 16554500
+Binary version: *v14.0.0-rc3* (add `--chain-id evmos_9000-4` flag to the start command)
+https://testnet.mintscan.io/evmos-testnet/proposals/195
