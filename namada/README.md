@@ -1,13 +1,13 @@
 # General information for Namada
 
-Current chain-id: **public-testnet-12.fedec12f3428**
+Current chain-id: **public-testnet-13.facd514666d5**
 
 # Adding a new addrbook file
 
 ```
 sudo systemctl stop namadad
 
-wget -O $HOME/.local/share/namada/public-testnet-12.fedec12f3428/cometbft/config/addrbook.json https://raw.githubusercontent.com/McDaan/general/main/namada/addrbook.json
+wget -O $HOME/.local/share/namada/public-testnet-13.facd514666d5/cometbft/config/addrbook.json https://raw.githubusercontent.com/McDaan/general/main/namada/addrbook.json
 
 sudo systemctl start namadad
 ```
