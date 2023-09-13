@@ -97,7 +97,7 @@ Note: here I used a newly created key to be the signer and gas payer. I just tri
 
 ## Saving the snapshot files
 ```
-CHAIN_ID=public-testnet-12.fedec12f3428
+CHAIN_ID=public-testnet-13.facd514666d5
 mkdir $HOME/snapshot
 mv $HOME/.local/share/namada/$CHAIN_ID/db $HOME/snapshot
 mv $HOME/.local/share/namada/$CHAIN_ID/cometbft/data $HOME/snapshot
