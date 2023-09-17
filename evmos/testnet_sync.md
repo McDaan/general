@@ -110,3 +110,8 @@ Name: "v14.0.0-rc2"
 Height: 16554500
 Binary version: *v14.0.0-rc3* (add `--chain-id evmos_9000-4` flag to the start command)
 https://testnet.mintscan.io/evmos-testnet/proposals/195
+
+Name: "v14.0.0-rc5"
+Height: 17148000
+Binary version: v14.0.0-rc5
+https://testnet.mintscan.io/evmos-testnet/proposals/199
