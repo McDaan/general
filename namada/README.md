@@ -53,7 +53,7 @@ namadac transfer \
     --token NAM \
     --amount 200
 ```
-Note: if `--source` is a validator established address and you are not indicating any implicit address in `--signing-keys`, make sure that your *<validator-alias>-validator-key* implicit address has enough funds to pay the fees.
+Note: if `--source` is a validator established address and you are not indicating any implicit address in `--signing-keys`, make sure that your *validatoralias-validator-key* implicit address has enough funds to pay the fees.
   
 Checking shielded balance (*testmasp*)
 ```
