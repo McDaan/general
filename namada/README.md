@@ -52,7 +52,8 @@ namadac transfer \
     --target testmasp-addr \
     --token NAM \
     --amount 200
-```  
+```
+Note: if `--source` is a validator established address and you are not indicating any implicit address in `--signing-keys`, make sure that your *<validator-alias>-validator-key* implicit address has enough funds to pay the fees.
   
 Checking shielded balance (*testmasp*)
 ```
@@ -69,7 +70,7 @@ namadac transfer \
     --amount 100 \
     --signing-keys test
 ```
-Note: here I used a newly created key to be the signer and gas payer. I just tried signing with the validator key (*mandragora-validator-key* in this case) and it works too.  
+Note: here I used a newly created implicit address `test` to be the signer and gas payer. I just tried signing with the validator key (*mandragora-validator-key* in this case) and it works too.  
   
 Checking shielded balance (*testmasp2*)
 ```
@@ -86,7 +87,7 @@ namadac transfer \
     --amount 50 \
     --signing-keys test
 ```
-Note: here I used a newly created key to be the signer and gas payer. I just tried signing with the validator key (*mandragora-validator-key* in this case) and it works too.  
+Note: here I used a newly created implicit address `test` to be the signer and gas payer. I just tried signing with the validator key (*mandragora-validator-key* in this case) and it works too.  
 
 ## Flow of the sent assets
 *mandragora* > *testmasp* (*testmasp-addr*) > *testmasp2* (*testmasp-addr2*) > *mandragora*
