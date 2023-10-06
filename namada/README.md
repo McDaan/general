@@ -1,6 +1,6 @@
 # General information for Namada
 
-Current chain-id: **public-testnet-13.facd514666d5**
+Current chain-id: **public-testnet-14.5d79b6958580**
 
 # Adding a new addrbook file
 
