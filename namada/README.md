@@ -7,7 +7,7 @@ Current chain-id: **public-testnet-13.facd514666d5**
 ```
 sudo systemctl stop namadad
 
-wget -O $HOME/.local/share/namada/public-testnet-13.facd514666d5/cometbft/config/addrbook.json https://raw.githubusercontent.com/McDaan/general/main/namada/addrbook.json
+wget -O $HOME/.local/share/namada/public-testnet-14.5d79b6958580/cometbft/config/addrbook.json https://raw.githubusercontent.com/McDaan/general/main/namada/addrbook.json
 
 sudo systemctl start namadad
 ```
@@ -98,7 +98,7 @@ Note: here I used a newly created implicit address `test` to be the signer and g
 
 ## Saving the snapshot files
 ```
-CHAIN_ID=public-testnet-13.facd514666d5
+CHAIN_ID=public-testnet-14.5d79b6958580
 mkdir $HOME/snapshot
 mv $HOME/.local/share/namada/$CHAIN_ID/db $HOME/snapshot
 mv $HOME/.local/share/namada/$CHAIN_ID/cometbft/data $HOME/snapshot
