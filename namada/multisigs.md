@@ -1,5 +1,5 @@
 # Testing multisig accounts on Namada
-On this guide, we will create a 3-of-6 multisig account and make sure that we created it correctly by using a query. Later on, we will construct, sign and submit different transactions types. 
+On this guide, we will create a 2-of-2 multisig account and make sure that we created it correctly by using a query. Later on, we will construct, sign and submit different transactions types. 
 Finally, for your further reference, multsig accounts with various threshold combinations (from 2 to 10) can be found at the bottom.
 
 # Constructing an offline transaction with a multisig account
