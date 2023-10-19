@@ -115,3 +115,8 @@ Name: "v14.0.0-rc5"
 Height: 17148000
 Binary version: v14.0.0-rc5
 https://testnet.mintscan.io/evmos-testnet/proposals/199
+
+Name: "v15.0.0-rc1"
+Height: 18034000
+Binary version: v15.0.0-rc1
+https://testnet.mintscan.io/evmos-testnet/proposals/210
