@@ -25,7 +25,7 @@ echo "}"
 echo "-------------------------------------------------------------------"
 echo -e "$GREEN The 1STFIELD is your validator HEX address. It has this format E3F9285F998C8554FCE49E00CC16BCEF39097928 and 40 characters. You can find yours in the explorer - here you have an example https://testnet.story.explorers.guru/validator/storyvaloper1u0ujshue3jz4fl8yncqvc94uauusj7fg9tx47g $NORMAL"
 echo "-------------------------------------------------------------------"
-read -p "What's your validator HEX address (1STFIELD): " OPTION1
+read -p "What's your validator HEX address (40 chars) (1STFIELD): " OPTION1
 echo "-------------------------------------------------------------------"
 CHAR1=$(echo -n $OPTION1 | wc -m);
 if [ "$CHAR1" -gt 40 ]; then
@@ -39,7 +39,7 @@ echo -e "$YELLOW Your 1STFIELD value is $OPTION1.$NORMAL"
 echo "-------------------------------------------------------------------"
 echo -e "$GREEN The 2NDFIELD is your validator uncompressed public key in base64 format. It has this format A9r+sVF6aMdPH2BJ0i0F9XQTR3xIcKCMLREI1OOA2ar+ and 44 characters. You can find yours by getting your storyvaloper address in an explorer, e.g. storyvaloper1u0ujshue3jz4fl8yncqvc94uauusj7fg9tx47g (with 51 chars) and through this API route thanks to the REST API provided by Daniel from TrustedPointed https://testnet.story.explorers.guru/validator/storyvaloper1u0ujshue3jz4fl8yncqvc94uauusj7fg9tx47g $NORMAL"
 echo "-------------------------------------------------------------------"
-read -p "What's your storyvaloper address so as to get your validator uncompressed public key in base64 format (2NDFIELD): " OPTION2
+read -p "What's your storyvaloper address so as to get your validator uncompressed public key in base64 format (51 chars) (2NDFIELD): " OPTION2
 echo "-------------------------------------------------------------------"
 CHAR2=$(echo -n $OPTION2 | wc -m);
 if [ "$CHAR2" -gt 51 ]; then
@@ -52,19 +52,20 @@ fi
 FIELD2=$(curl -s https://api-story-testnet.trusted-point.com/cosmos/staking/v1beta1/validators/${OPTION2} | jq -r .validator.consensus_pubkey.key)
 echo -e "$YELLOW Your 2NDFIELD value is $FIELD2.$NORMAL"
 echo "-------------------------------------------------------------------"
-echo -e "$GREEN The 3RDFIELD is your validator account private key in base64 format. It has this format H09dgNnmE5Z1vnF288Q+WOwoLWDWvtlU8GhAirKoFBM= and 44 characters. So as to get such a format, you will need to convert he validator account private key in HEX format to the base64 one. It has this format (0x)1f4f5d80d9e6139675be7176f3c43e58ec282d60d6bed954f068408ab2a81413 and 64 characters. You will need to navigate to this HEX to base64 converter website e.g. https://base64.guru/converter/encode/hex, paste your private key (without 0x), and get the base64 result $NORMAL"
+echo -e "$GREEN The 3RDFIELD is your validator account private key in base64 format. It has this format H09dgNnmE5Z1vnF288Q+WOwoLWDWvtlU8GhAirKoFBM= and 44 characters. So as to get such a format, you will need to convert the validator account private key in HEX format to the base64 one. It has this format (0x)1f4f5d80d9e6139675be7176f3c43e58ec282d60d6bed954f068408ab2a81413 and 64 characters. $NORMAL"
 echo "-------------------------------------------------------------------"
-read -p "What's your validator account private key in base64 format (3RDFIELD): " OPTION3
+read -p "What's your validator account private key in HEX format (without 0x and 64 chars) (3RDFIELD): " OPTION3
 echo "-------------------------------------------------------------------"
 CHAR3=$(echo -n $OPTION3 | wc -m);
-if [ "$CHAR3" -gt 44 ]; then
-	echo -e "$RED Your response has more than 44 characters. Aborting...$NORMAL"
+if [ "$CHAR3" -gt 64 ]; then
+	echo -e "$RED Your response has more than 64 characters. Aborting...$NORMAL"
     exit 0
-elif [ "$CHAR3" -lt 44 ]; then
-	echo -e "$RED Your response has less than 44 characters. Aborting...$NORMAL"
+elif [ "$CHAR3" -lt 64 ]; then
+	echo -e "$RED Your response has less than 64 characters. Aborting...$NORMAL"
     exit 0
 fi
-echo -e "$YELLOW Your 3RDFIELD value is $OPTION3.$NORMAL"
+RESULT64=$(echo -n $OPTION3 | xxd -p -r | base64)
+echo -e "$YELLOW Your 3RDFIELD value is $RESULT64.$NORMAL"
 echo "-------------------------------------------------------------------"
 echo -e "$GREEN Congratulations! You have recreated your original priv_validator_key.json file. You can now proceed to restore the file and recover your validator. Enjoy it! Please double-check that you have filled in correctly values in the respective fields. Repeat the process otherwise. The final JSON file has been saved to $HOME/priv_validator_key.json. In case you want to copy it, here you have the JSON result. Made with ♥ by Mandragora!"
 cat > $HOME/priv_validator_key.json <<EOF
@@ -76,7 +77,7 @@ cat > $HOME/priv_validator_key.json <<EOF
   },
   "priv_key": {
     "type": "tendermint/PrivKeySecp256k1",
-    "value": "$OPTION3"
+    "value": "$RESULT64"
   }
 }
 EOF
@@ -89,7 +90,7 @@ echo "    \"value\": \"$FIELD2\""
 echo "  },"
 echo "  \"priv_key\": {"
 echo "    \"type\": \"tendermint/PrivKeySecp256k1\","
-echo "    \"value\": \"$OPTION3\""
+echo "    \"value\": \"$RESULT64\""
 echo "  }"
 echo "}"
 echo "-------------------------------------------------------------------"
