@@ -19,7 +19,9 @@ echo "5) CHECK LOGS (STORY+GETH)"
 echo "6) ADD SEEDS (Mandragora & others)"
 echo "7) ADD PEERS (Mandragora & others)"
 echo "8) ADD GETH ENODE (Mandragora)"
-echo -e "9) DOWNLOAD ADDRBOOK (Mandragora) $NORMAL"
+echo -e "9) DOWNLOAD ADDRBOOK (Mandragora)"
+echo -e "10) STOP STORY OR GETH NODES"
+echo -e "11) RESTART STORY OR GETH NODES $NORMAL"
 
 echo "-------------------------------------------------------------------"
 echo -e "What do you want to do?"
@@ -356,7 +358,7 @@ elif [ "$OPTION" == "4" ]; then
 	echo -e "$GREEN Do you want to see story or geth logs (story or geth)? (ctrl+q to quit) .$NORMAL"
 	read -p "Selected option (story or geth): " OPT
 
-	 if [ "$OPT" == "story" ]; then
+	if [ "$OPT" == "story" ]; then
 		sudo journalctl -u story -f -o cat
 	elif [ "$OPT" == "geth" ]; then
 		sudo journalctl -u story-geth -f -o cat
@@ -383,7 +385,41 @@ elif [ "$OPTION" == "4" ]; then
    	sudo systemctl stop story
     	wget -O $HOME/.story/story/config/addrbook.json https://snapshots.mandragora.io/addrbook.json
     	sudo systemctl start story
+ elif [ "$OPTION" == "10" ]; then
+  	echo -e "$GREEN What node you want to stop (story, geth or both)?.$NORMAL"
+        read -p "Selected option (story, geth or both): " OPT
+	if [ "$OPT" == "story" ]; then
+		sudo systemctl stop story
+  		echo -e "$GREEN Geth node started (check out logs).$NORMAL"
+	elif [ "$OPT" == "geth" ]; then
+		sudo systemctl stop story-geth
+  		echo -e "$GREEN Story node started (check out logs).$NORMAL"
+  	elif [ "$OPT" == "both" ]; then
+		sudo systemctl stop story
+		sudo systemctl stop story-geth
+  		echo -e "$GREEN Both story and geth nodes stopped (check out logs).$NORMAL"
+	else
+		echo -e "$RED Wrong snswer. Select a valid option (story, geth or both). Aborting...$NORMAL"
+		exit 0
+	fi
+ elif [ "$OPTION" == "11" ]; then
+  	echo -e "$GREEN What node you want to restart (story, geth or both)?.$NORMAL"
+        read -p "Selected option (story, geth or both): " OPT
+	if [ "$OPT" == "story" ]; then
+		sudo systemctl start story
+  		echo -e "$GREEN Geth node started (check out logs).$NORMAL"
+	elif [ "$OPT" == "geth" ]; then
+		sudo systemctl start story-geth
+  		echo -e "$GREEN Story node started (check out logs).$NORMAL"
+        elif [ "$OPT" == "both" ]; then
+		sudo systemctl start story
+		sudo systemctl start story-geth
+  		echo -e "$GREEN Both story and geth nodes started (check out logs).$NORMAL"
+	else
+		echo -e "$RED Wrong snswer. Select a valid option (story, geth or both). Aborting...$NORMAL"
+		exit 0
+	fi
   else
-	echo -e "$RED Wrong snswer. Select a valid option (1-9). Aborting...$NORMAL"
+	echo -e "$RED Wrong snswer. Select a valid option (1-11). Aborting...$NORMAL"
 	exit 0
 fi
