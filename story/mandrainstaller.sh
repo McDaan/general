@@ -14,7 +14,9 @@ echo -e "$YELLOW SELECT AN OPTION"
 echo "1) INSTALL A NODE (simple and standard setup)"
 echo "2) APPLY A SNAPSHOT"
 echo "3) UPDATE TO A SPECIFIC VERSION"
-echo -e "4) NODE STATUS $NORMAL"
+echo "4) NODE STATUS"
+echo -e "5) CHECK LOGS (STORY+GETH) $NORMAL"
+
 echo "-------------------------------------------------------------------"
 echo -e "What do you want to do?"
 echo "-------------------------------------------------------------------"
@@ -315,7 +317,7 @@ elif [ "$OPTION" == "2" ]; then
         fi
 elif [ "$OPTION" == "3" ]; then
 	echo -e "$GREEN Do you want to upgrade your story or story-geth binary (story/geth)? .$NORMAL"
-    read -p "Selected binary (story or geth): " BINARY
+        read -p "Selected binary (story or geth): " BINARY
 		
     if [ "$BINARY" == "story" ]; then
 		echo -e "$GREEN Downloading story binary.$NORMAL"
@@ -325,7 +327,7 @@ elif [ "$OPTION" == "3" ]; then
 			sudo cp $HOME/story-linux-amd64-0.11.0-aac4bfe/story /usr/local/bin/story
 			story version	
 			echo -e "$GREEN Make sure story-geth version is the one running on the network. Otherwise, download the correct one and tag @danielmandragora if you want this script be up to date (you can still modify it to change the binary versions though).$NORMAL"
-	elif [ "$BINARY" == "getb" ]; then
+	elif [ "$BINARY" == "geth" ]; then
 		echo -e "$GREEN Downloading geth binary.$NORMAL"
 			wget https://github.com/piplabs/story-geth/releases/download/v0.9.4/geth-linux-amd64
 			chmod +x geth-linux-amd64
@@ -346,4 +348,16 @@ elif [ "$OPTION" == "4" ]; then
 		echo -e "$NORMAL Your node latest block height: $YOURBLOCK | Latest block height on external RPC: $RPCBLOCK | Blocks behind: $BEHIND (ctrl+q to quit).$NORMAL"
 		sleep 2
 	done
+ elif [ "$OPTION" == "5" ]; then
+	echo -e "$GREEN Do you want to see story or geth logs (story or geth)? .$NORMAL"
+	read -p "Selected option (story or geth): " $OPT
+
+	 if [ "$BINARY" == "story" ]; then
+		sudo journalctl -u story -f -o cat
+	elif [ "$BINARY" == "geth" ]; then
+		sudo journalctl -u story-geth -f -o cat
+	else
+		echo -e "$RED Wrong snswer. Select a valid option (story or geth). Aborting...$NORMAL"
+		exit 0
+	fi
 fi
