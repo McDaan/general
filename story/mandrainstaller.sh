@@ -45,8 +45,8 @@ if [ "$OPTION" == "1" ]; then
 			story init --network iliad --moniker $MONIKER
 			
 			echo -e "$GREEN Creating service files for story and geth.$NORMAL"
-   			cat > /etc/systemd/system/story.service
-      			<<EOF
+
+   			sudo tee /etc/systemd/system/story.service <<- EOF > /dev/null
 				[Unit]
 				Description=Story Consensus Client
 				After=network.target
@@ -56,14 +56,13 @@ if [ "$OPTION" == "1" ]; then
 				ExecStart=/usr/local/bin/story run
 				Restart=on-failure
 				RestartSec=3
-				LimitNOFILE=1048576
+				LimitNOFILE=65535
 	
 				[Install]
 				WantedBy=multi-user.target
 		         EOF
 	   
-			 cat > /etc/systemd/system/story-geth.service
-    			 <<EOF
+			 sudo tee /etc/systemd/system/story-geth.service <<- EOF > /dev/null
 				 [Unit]
 				 Description=Story Geth Client
 				 After=network.target
@@ -73,7 +72,7 @@ if [ "$OPTION" == "1" ]; then
 				ExecStart=/usr/local/bin/story-geth --iliad --syncmode full
 				Restart=on-failure
 				RestartSec=3
-				LimitNOFILE=1048576
+				LimitNOFILE=65535
 	
 				[Install]
 				WantedBy=multi-user.target
