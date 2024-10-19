@@ -12,10 +12,14 @@ echo -e "$GREEN We can go through different options. Let's get started! (to inst
 echo -e "$NORMAL-------------------------------------------------------------------"
 echo -e "$YELLOW SELECT AN OPTION"
 echo "1) INSTALL A NODE (simple and standard setup)"
-echo "2) APPLY A SNAPSHOT"
+echo "2) APPLY A SNAPSHOT (Mandragora & others)"
 echo "3) UPDATE TO A SPECIFIC VERSION"
 echo "4) NODE STATUS"
-echo -e "5) CHECK LOGS (STORY+GETH) $NORMAL"
+echo "5) CHECK LOGS (STORY+GETH)"
+echo "6) ADD SEEDS (Mandragora & others)"
+echo "7) ADD PEERS (Mandragora & others)"
+echo "8) ADD GETH ENODE (Mandragora)"
+echo -e "9) DOWNLOAD ADDRBOOK (Mandragora) $NORMAL"
 
 echo "-------------------------------------------------------------------"
 echo -e "What do you want to do?"
@@ -344,7 +348,7 @@ elif [ "$OPTION" == "4" ]; then
 	while true; do 
 		YOURBLOCK=$(curl -s localhost:26657/status | jq -r .result.sync_info.latest_block_height)
 		RPCBLOCK=$(curl -s https://story-rpc.mandragora.io/status | jq -r .result.sync_info.latest_block_height)
-		$BEHIND=$(($RPCBLOCK - YOURBLOCK))
+		$BEHIND=$(($RPCBLOCK - $YOURBLOCK))
 		echo -e "$NORMAL Your node latest block height: $YOURBLOCK | Latest block height on external RPC: $RPCBLOCK | Blocks behind: $BEHIND (ctrl+q to quit).$NORMAL"
 		sleep 2
 	done
@@ -360,4 +364,23 @@ elif [ "$OPTION" == "4" ]; then
 		echo -e "$RED Wrong snswer. Select a valid option (story or geth). Aborting...$NORMAL"
 		exit 0
 	fi
+  elif [ "$OPTION" == "6" ]; then
+	echo -e "$GREEN Adding seeds (Mandragora & others).$NORMAL"
+ 	SEEDS=b6fb541c80d968931602710342dedfe1f5c577e3@story-seed.mandragora.io:23656,51ff395354c13fab493a03268249a74860b5f9cc@story-testnet-seed.itrocket.net:26656,5d7507dbb0e04150f800297eaba39c5161c034fe@135.125.188.77:26656
+  	sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" $HOME/.story/story/config/config.toml
+   	sudo systemctl restart story
+  elif [ "$OPTION" == "7" ]; then
+	echo -e "$GREEN Adding peers (Mandragora) .$NORMAL"
+ 	PEERS=$(curl -sS https://story-rpc.mandragora.io/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}' | paste -sd, -)
+  	sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" $HOME/.story/story/config/config.toml
+   	sudo systemctl restart story
+  elif [ "$OPTION" == "8" ]; then
+ 	 echo -e "$GREEN Adding geth enode (Mandrgora & others) .$NORMAL"
+   	 story-geth --exec 'admin.addPeer("enode://a86b76eb7171eb68c4495e1fbad292715eee9b77a34ffa5cf39e40cc9047e1c41e01486d1e31428228a1350b0f870bcd3b6c5d608ba65fe7b7fcba715a78eeb8@story-geth.mandragora.io:30303")' attach ~/.story/geth/iliad/geth.ipc
+     	 sudo systemctl restart story-geth
+  elif [ "$OPTION" == "9" ]; then
+  	echo -e "$GREEN Downloading addrbook (Mandragora) .$NORMAL"
+   	sudo systemctl stop story
+    	wget -O $HOME/.story/story/config/addrbook.json https://snapshots.mandragora.io/addrbook.json
+    	sudo systemctl start story
 fi
