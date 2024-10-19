@@ -75,7 +75,6 @@ LimitNOFILE=65535
 	
 [Install]
 WantedBy=multi-user.target
-
 EOF
 			echo -e "$GREEN Enabling service files.$NORMAL"
 			sudo systemctl daemon-reload
