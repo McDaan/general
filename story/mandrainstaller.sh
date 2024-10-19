@@ -356,9 +356,9 @@ elif [ "$OPTION" == "4" ]; then
 	echo -e "$GREEN Do you want to see story or geth logs (story or geth)? .$NORMAL"
 	read -p "Selected option (story or geth): " $OPT
 
-	 if [ "$BINARY" == "story" ]; then
+	 if [ "$OPT" == "story" ]; then
 		sudo journalctl -u story -f -o cat
-	elif [ "$BINARY" == "geth" ]; then
+	elif [ "$OPT" == "geth" ]; then
 		sudo journalctl -u story-geth -f -o cat
 	else
 		echo -e "$RED Wrong snswer. Select a valid option (story or geth). Aborting...$NORMAL"
