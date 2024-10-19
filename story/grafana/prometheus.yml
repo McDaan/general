@@ -1,0 +1,14 @@
+global:
+  scrape_interval: 25s 
+  evaluation_interval: 20s 
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+  - job_name: 'story'
+    static_configs:
+      - targets: ['story-testnet:9100']
+  - job_name: 'story-metrics'
+    static_configs:
+      - targets: ['story-testnet:26642']
