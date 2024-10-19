@@ -63,7 +63,7 @@ EOF
 			echo -e "$GREEN Creating service files for story and geth.$NORMAL"
 sudo tee /etc/systemd/system/story-geth.service <<EOF
    [Unit]
-Description=Story Geth Client
+Description=story-geth service
  After=network.target
 		
 [Service]
@@ -79,7 +79,7 @@ EOF
 
 sudo tee /etc/systemd/system/story.service <<EOF
   [Unit]
-Description=Story Consensus Client
+Description=story-cometbft service
 After=network.target
 	
 [Service]
@@ -383,4 +383,7 @@ elif [ "$OPTION" == "4" ]; then
    	sudo systemctl stop story
     	wget -O $HOME/.story/story/config/addrbook.json https://snapshots.mandragora.io/addrbook.json
     	sudo systemctl start story
+  else
+	echo -e "$RED Wrong snswer. Select a valid option (1-9). Aborting...$NORMAL"
+	exit 0
 fi
