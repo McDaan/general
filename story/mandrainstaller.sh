@@ -45,39 +45,38 @@ if [ "$OPTION" == "1" ]; then
 			story init --network iliad --moniker $MONIKER
 			
 			echo -e "$GREEN Creating service files for story and geth.$NORMAL"
-			sudo tee /etc/systemd/system/story.service > /dev/null <<EOF
-			[Unit]
-			Description=Story Consensus Client
-			After=network.target
-
-			[Service]
-			User=root
-			ExecStart=/usr/local/bin/story run
-			Restart=on-failure
-			RestartSec=3
-			LimitNOFILE=1048576
-
-			[Install]
-			WantedBy=multi-user.target
+   			cat > /etc/systemd/system/story.service <<EOF
+				[Unit]
+				Description=Story Consensus Client
+				After=network.target
+	
+				[Service]
+				User=root
+				ExecStart=/usr/local/bin/story run
+				Restart=on-failure
+				RestartSec=3
+				LimitNOFILE=1048576
+	
+				[Install]
+				WantedBy=multi-user.target
+		         EOF
+	   
+			 cat > /etc/systemd/system/story-geth.service <<EOF
+			 [Unit]
+				Description=Story Geth Client
+				After=network.target
+	
+				[Service]
+				User=root
+				ExecStart=/usr/local/bin/story-geth --iliad --syncmode full
+				Restart=on-failure
+				RestartSec=3
+				LimitNOFILE=1048576
+	
+				[Install]
+				WantedBy=multi-user.target
 			EOF
-			
-			
-			sudo tee /etc/systemd/system/story-geth.service > /dev/null <<EOF
-			[Unit]
-			Description=Story Geth Client
-			After=network.target
-
-			[Service]
-			User=root
-			ExecStart=/usr/local/bin/story-geth --iliad --syncmode full
-			Restart=on-failure
-			RestartSec=3
-			LimitNOFILE=1048576
-
-			[Install]
-			WantedBy=multi-user.target
-			EOF
-			
+   
 			echo -e "$GREEN Enabling service files.$NORMAL"
 			sudo systemctl daemon-reload
 			sudo systemctl enable story-geth
