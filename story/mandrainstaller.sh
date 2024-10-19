@@ -354,7 +354,7 @@ elif [ "$OPTION" == "4" ]; then
 	done
  elif [ "$OPTION" == "5" ]; then
 	echo -e "$GREEN Do you want to see story or geth logs (story or geth)? .$NORMAL"
-	read -p "Selected option (story or geth): " $OPT
+	read -p "Selected option (story or geth): " OPT
 
 	 if [ "$OPT" == "story" ]; then
 		sudo journalctl -u story -f -o cat
