@@ -346,7 +346,12 @@ elif [ "$OPTION" == "3" ]; then
 	fi
 elif [ "$OPTION" == "4" ]; then
 	echo -e "$GREEN Keep an eye at your node's latest block height and compare it with the latest block height of the external RPC endpoint. You will be fine as long as "Blocks behind:" value keeps increasing and finally catches up with the RPC endpoint latest block height.$NORMAL"
-	
+
+	BLOCK=$(curl -s localhost:26657/status | jq -r .result.sync_info.latest_block_height)
+	if [ "$BLOCK" -lt 2 ]; then
+		echo -e "$RED Wait until your node is active or start it before proceeding. Aborting...$NORMAL"
+		exit 0
+	fi
 	while true; do 
 		YOURBLOCK=$(curl -s localhost:26657/status | jq -r .result.sync_info.latest_block_height)
 		RPCBLOCK=$(curl -s https://story-rpc.mandragora.io/status | jq -r .result.sync_info.latest_block_height)
