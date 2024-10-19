@@ -334,7 +334,7 @@ elif [ "$OPTION" == "4" ]; then
 	while true; do 
 		YOURBLOCK=$(curl -s localhost:26657/status | jq -r .result.sync_info.latest_block_height)
 		RPCBLOCK=$(curl -s https://story-rpc.mandragora.io/status | jq -r .result.sync_info.latest_block_height)
-		$BEHIND=$($RPCBLOCK - $YOURBLOCK)
+		$BEHIND=$(($RPCBLOCK - YOURBLOCK))
 		echo -e "$NORMAL Your node latest block height: $YOURBLOCK | Latest block height on external RPC: $RPCBLOCK | Blocks behind: $BEHIND (ctrl+q to quit).$NORMAL"
 		sleep 2
 	done
