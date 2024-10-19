@@ -379,7 +379,7 @@ elif [ "$OPTION" == "4" ]; then
    	 story-geth --exec 'admin.addPeer("enode://a86b76eb7171eb68c4495e1fbad292715eee9b77a34ffa5cf39e40cc9047e1c41e01486d1e31428228a1350b0f870bcd3b6c5d608ba65fe7b7fcba715a78eeb8@story-geth.mandragora.io:30303")' attach ~/.story/geth/iliad/geth.ipc
      	 sudo systemctl restart story-geth
   elif [ "$OPTION" == "9" ]; then
-  	echo -e "$GREEN Downloading addrbook (Mandragora) .$NORMAL"
+  	echo -e "$GREEN Downloading addrbook (Mandragora).$NORMAL"
    	sudo systemctl stop story
     	wget -O $HOME/.story/story/config/addrbook.json https://snapshots.mandragora.io/addrbook.json
     	sudo systemctl start story
