@@ -14,7 +14,7 @@ echo "1) INSTALL A NODE (simple and standard setup)"
 echo "2) APPLY A SNAPSHOT"
 echo "3) UPDATE TO A SPECIFIC VERSION"
 echo "4) NODE STATUS"
-echo "$NORMAL-------------------------------------------------------------------"
+echo -e "$NORMAL-------------------------------------------------------------------"
 echo -e "$YELLOW What do you want to do? $NORMAL"
 echo "-------------------------------------------------------------------"
 read -p "Your selection: " OPTION
