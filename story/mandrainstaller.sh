@@ -349,7 +349,7 @@ elif [ "$OPTION" == "4" ]; then
 		YOURBLOCK=$(curl -s localhost:26657/status | jq -r .result.sync_info.latest_block_height)
 		RPCBLOCK=$(curl -s https://story-rpc.mandragora.io/status | jq -r .result.sync_info.latest_block_height)
 		$BEHIND=$(($RPCBLOCK - $YOURBLOCK))
-		echo -e "$NORMAL Your node latest block height: $YOURBLOCK | Latest block height on external RPC: $RPCBLOCK | Blocks behind: $BEHIND (ctrl+q to quit).$NORMAL"
+		echo -e "$GREEN Your node latest block height: $YOURBLOCK | $YELLOW Latest block height on external RPC: $RPCBLOCK | $RED Blocks behind: $BEHIND (ctrl+q to quit).$NORMAL"
 		sleep 2
 	done
  elif [ "$OPTION" == "5" ]; then
