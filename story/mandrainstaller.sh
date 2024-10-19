@@ -353,7 +353,7 @@ elif [ "$OPTION" == "4" ]; then
 		sleep 2
 	done
  elif [ "$OPTION" == "5" ]; then
-	echo -e "$GREEN Do you want to see story or geth logs (story or geth)? .$NORMAL"
+	echo -e "$GREEN Do you want to see story or geth logs (story or geth)? (ctrl+q to quit) .$NORMAL"
 	read -p "Selected option (story or geth): " OPT
 
 	 if [ "$OPT" == "story" ]; then
