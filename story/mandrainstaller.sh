@@ -412,10 +412,10 @@ elif [ "$OPTION" == "4" ]; then
         read -p "Selected option (story, geth or both): " OPT
 	if [ "$OPT" == "story" ]; then
 		sudo systemctl start story
-  		echo -e "$GREEN Geth node started (check out logs).$NORMAL"
+  		echo -e "$GREEN Story node started (check out logs).$NORMAL"
 	elif [ "$OPT" == "geth" ]; then
 		sudo systemctl start story-geth
-  		echo -e "$GREEN Story node started (check out logs).$NORMAL"
+  		echo -e "$GREEN Geth node started (check out logs).$NORMAL"
         elif [ "$OPT" == "both" ]; then
 		sudo systemctl start story
 		sudo systemctl start story-geth
