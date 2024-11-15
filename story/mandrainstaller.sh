@@ -47,20 +47,20 @@ EOF
 		
 			echo -e "$GREEN Downloading required binaries (geth and story).$NORMAL"
 			cd $HOME
-			wget https://github.com/piplabs/story-geth/releases/download/v0.9.4/geth-linux-amd64
+			wget https://github.com/piplabs/story-geth/releases/download/v0.10.0/geth-linux-amd64
 			chmod +x geth-linux-amd64
 			sudo mv $HOME/geth-linux-amd64 /usr/local/bin/story-geth
 			story-geth version
 			
-			wget https://story-geth-binaries.s3.us-west-1.amazonaws.com/story-public/story-linux-amd64-0.11.0-aac4bfe.tar.gz
-			tar -xzvf story-linux-amd64-0.11.0-aac4bfe.tar.gz
-			sudo cp $HOME/story-linux-amd64-0.11.0-aac4bfe/story /usr/local/bin/story
+			wget https://github.com/piplabs/story/releases/download/v0.12.1/story-linux-amd64
+			chmod +x story-linux-amd64
+			sudo mv $HOME/story-linux-amd64 /usr/local/bin/story
 			story version
 			
 			echo -e "$GREEN Initializing node.$NORMAL"
 			echo -e "$GREEN Choose a node moniker? $NORMAL"
 			read -p "Your node noniker: " MONIKER
-			story init --network iliad --moniker $MONIKER
+			story init --network odyssey --moniker $MONIKER
 			
 			echo -e "$GREEN Creating service files for story and geth.$NORMAL"
 sudo tee /etc/systemd/system/story-geth.service <<EOF
@@ -70,7 +70,7 @@ Description=story-geth service
 		
 [Service]
 User=root
-ExecStart=/usr/local/bin/story-geth --iliad --syncmode full
+ExecStart=/usr/local/bin/story-geth --odyssey --syncmode full
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
@@ -129,7 +129,7 @@ elif [ "$OPTION" == "2" ]; then
 							sudo cp $HOME/.story/story/data/priv_validator_state.json $HOME/.story/priv_validator_state.json.backup
 
 							echo -e "$GREEN Deleting old data.$NORMAL"
-							sudo rm -rf $HOME/.story/geth/iliad/geth/chaindata
+							sudo rm -rf $HOME/.story/geth/odyssey/geth/chaindata
 							sudo rm -rf $HOME/.story/story/data
 
 							echo -e "$GREEN Downloading both story and geth snapshots (this may take time, wait patiently).$NORMAL"
@@ -137,7 +137,7 @@ elif [ "$OPTION" == "2" ]; then
 							wget -O story_snapshot.lz4 https://snapshots.mandragora.io/story_snapshot.lz4
 
 							echo -e "$GREEN Decompressing both story and geth snapshot files (this may take time, wait patiently).$NORMAL"
-							lz4 -c -d geth_snapshot.lz4 | tar -xv -C $HOME/.story/geth/iliad/geth
+							lz4 -c -d geth_snapshot.lz4 | tar -xv -C $HOME/.story/geth/odyssey/geth
 							lz4 -c -d story_snapshot.lz4 | tar -xv -C $HOME/.story/story
 
 							echo -e "$GREEN Deleting snapshot files.$NORMAL"
@@ -171,13 +171,13 @@ elif [ "$OPTION" == "2" ]; then
 							
 							echo -e "$GREEN Deleting old data.$NORMAL"
 							rm -rf ~/.story/story/data
-							rm -rf ~/.story/geth/iliad/geth/chaindata
+							rm -rf ~/.story/geth/odyssey/geth/chaindata
 							
 							echo -e "$GREEN Decompressing both story and geth snapshot files (this may take time, wait patiently).$NORMAL"
 							sudo mkdir -p /root/.story/story/data
 							lz4 -d -c Story_snapshot.lz4 | pv | sudo tar xv -C ~/.story/story/ > /dev/null
-							sudo mkdir -p /root/.story/geth/iliad/geth/chaindata
-							lz4 -d -c Geth_snapshot.lz4 | pv | sudo tar xv -C ~/.story/geth/iliad/geth/ > /dev/null
+							sudo mkdir -p /root/.story/geth/odyssey/geth/chaindata
+							lz4 -d -c Geth_snapshot.lz4 | pv | sudo tar xv -C ~/.story/geth/odyssey/geth/ > /dev/null
 							
 							echo -e "$GREEN Restoring your validator state.$NORMAL"
 							cp ~/.story/priv_validator_state.json.backup ~/.story/story/data/priv_validator_state.json
@@ -203,11 +203,11 @@ elif [ "$OPTION" == "2" ]; then
 							
 							echo -e "$GREEN Deleting old data.$NORMAL"
 							rm -rf $HOME/.story/story/data
-							rm -rf $HOME/.story/geth/iliad/geth/chaindata
+							rm -rf $HOME/.story/geth/odyssey/geth/chaindata
 							
 							echo -e "$GREEN Decompressing both story and geth snapshot files (this may take time, wait patiently).$NORMAL"
 							tar -I lz4 -xvf ~/story-archive-snap.tar.lz4 -C $HOME/.story/story
-							tar -I lz4 -xvf ~/geth-archive-snap.tar.lz4 -C $HOME/.story/geth/iliad/geth
+							tar -I lz4 -xvf ~/geth-archive-snap.tar.lz4 -C $HOME/.story/geth/odyssey/geth
 
 							echo -e "$GREEN Restoring your validator state.$NORMAL"
 							mv $HOME/.story/story/priv_validator_state.json.backup $HOME/.story/story/data/priv_validator_state.json
@@ -231,7 +231,7 @@ elif [ "$OPTION" == "2" ]; then
 							sudo cp $HOME/.story/story/data/priv_validator_state.json $HOME/.story/priv_validator_state.json.backup
 
 							echo -e "$GREEN Deleting old data.$NORMAL"
-							sudo rm -rf $HOME/.story/geth/iliad/geth/chaindata
+							sudo rm -rf $HOME/.story/geth/odyssey/geth/chaindata
 							sudo rm -rf $HOME/.story/story/data
 
 							echo -e "$GREEN Downloading both story and geth snapshots (this may take time, wait patiently).$NORMAL"
@@ -239,7 +239,7 @@ elif [ "$OPTION" == "2" ]; then
 							wget -O story_snapshot.lz4 https://snapshots2.mandragora.io/story/story_snapshot.lz4
 
 							echo -e "$GREEN Decompressing both story and geth snapshot files (this may take time, wait patiently).$NORMAL"
-							lz4 -c -d geth_snapshot.lz4 | tar -xv -C $HOME/.story/geth/iliad/geth
+							lz4 -c -d geth_snapshot.lz4 | tar -xv -C $HOME/.story/geth/odyssey/geth
 							lz4 -c -d story_snapshot.lz4 | tar -xv -C $HOME/.story/story
 
 							echo -e "$GREEN Deleting snapshot files.$NORMAL"
@@ -273,13 +273,13 @@ elif [ "$OPTION" == "2" ]; then
 							
 							echo -e "$GREEN Deleting old data.$NORMAL"
 							rm -rf ~/.story/story/data
-							rm -rf ~/.story/geth/iliad/geth/chaindata
+							rm -rf ~/.story/geth/odyssey/geth/chaindata
 							
 							echo -e "$GREEN Decompressing both story and geth snapshot files (this may take time, wait patiently).$NORMAL"
 							sudo mkdir -p /root/.story/story/data
 							lz4 -d -c Story_snapshot.lz4 | pv | sudo tar xv -C ~/.story/story/ > /dev/null
-							sudo mkdir -p /root/.story/geth/iliad/geth/chaindata
-							lz4 -d -c Geth_snapshot.lz4 | pv | sudo tar xv -C ~/.story/geth/iliad/geth/ > /dev/null
+							sudo mkdir -p /root/.story/geth/odyssey/geth/chaindata
+							lz4 -d -c Geth_snapshot.lz4 | pv | sudo tar xv -C ~/.story/geth/odyssey/geth/ > /dev/null
 							
 							echo -e "$GREEN Restoring your validator state.$NORMAL"
 							cp ~/.story/priv_validator_state.json.backup ~/.story/story/data/priv_validator_state.json
@@ -300,11 +300,11 @@ elif [ "$OPTION" == "2" ]; then
 
 							echo -e "$GREEN Deleting old data.$NORMAL"
 							rm -rf $HOME/.story/story/data
-							rm -rf $HOME/.story/geth/iliad/geth/chaindata
+							rm -rf $HOME/.story/geth/odyssey/geth/chaindata
 							
 							echo -e "$GREEN Decompressing both story and geth snapshot files (this may take time, wait patiently).$NORMAL"
 							curl https://server-3.itrocket.net/testnet/story/story_2024-10-19_1576351_snap.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.story/story
-							curl https://server-3.itrocket.net/testnet/story/geth_story_2024-10-19_1576351_snap.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.story/geth/iliad/geth
+							curl https://server-3.itrocket.net/testnet/story/geth_story_2024-10-19_1576351_snap.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.story/geth/odyssey/geth
 
 							echo -e "$GREEN Restoring your validator state.$NORMAL"
 							mv $HOME/.story/story/priv_validator_state.json.backup $HOME/.story/story/data/priv_validator_state.json
@@ -332,7 +332,7 @@ elif [ "$OPTION" == "3" ]; then
 			tar -xzvf story-linux-amd64-0.11.0-aac4bfe.tar.gz
 			sudo cp $HOME/story-linux-amd64-0.11.0-aac4bfe/story /usr/local/bin/story
 			story version	
-			echo -e "$GREEN Make sure story-geth version is the one running on the network. Otherwise, download the correct one and tag @danielmandragora if you want this script be up to date (you can still modify it to change the binary versions though).$NORMAL"
+			echo -e "$GREEN Make sure story version is the one running on the network. Otherwise, download the correct one and tag @danielmandragora if you want this script be up to date (you can still modify it to change the binary versions though).$NORMAL"
 	elif [ "$BINARY" == "geth" ]; then
 		echo -e "$GREEN Downloading geth binary.$NORMAL"
 			wget https://github.com/piplabs/story-geth/releases/download/v0.9.4/geth-linux-amd64
@@ -373,7 +373,7 @@ elif [ "$OPTION" == "4" ]; then
 	fi
   elif [ "$OPTION" == "6" ]; then
 	echo -e "$GREEN Adding seeds (Mandragora & others).$NORMAL"
- 	SEEDS=b6fb541c80d968931602710342dedfe1f5c577e3@story-seed.mandragora.io:23656,51ff395354c13fab493a03268249a74860b5f9cc@story-testnet-seed.itrocket.net:26656,5d7507dbb0e04150f800297eaba39c5161c034fe@135.125.188.77:26656
+ 	SEEDS=2df2b0b66f267939fea7fe098cfee696d6243cec@story-seed.mandragora.io:23656,434af9dae402ab9f1c8a8fc15eae2d68b5be3387@story-testnet-seed.itrocket.net:29656,3f472746f46493309650e5a033076689996c8881@story-testnet.rpc.kjnodes.com:26659
   	sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" $HOME/.story/story/config/config.toml
    	sudo systemctl restart story
   elif [ "$OPTION" == "7" ]; then
@@ -383,7 +383,7 @@ elif [ "$OPTION" == "4" ]; then
    	sudo systemctl restart story
   elif [ "$OPTION" == "8" ]; then
  	 echo -e "$GREEN Adding geth enode (Mandrgora & others) .$NORMAL"
-   	 story-geth --exec 'admin.addPeer("enode://a86b76eb7171eb68c4495e1fbad292715eee9b77a34ffa5cf39e40cc9047e1c41e01486d1e31428228a1350b0f870bcd3b6c5d608ba65fe7b7fcba715a78eeb8@story-geth.mandragora.io:30303")' attach ~/.story/geth/iliad/geth.ipc
+   	 story-geth --exec 'admin.addPeer("enode://3cf3215bf1a9516fb038bf9217fa149d3a5a7dcc8e3f6b34d3964c3e631af828c6cdad1627acc397db35df8e6a1efb2c597b2c7f1820a56b20956b93a45de5a6@story-geth.mandragora.io:30303")' attach ~/.story/geth/odyssey/geth.ipc
      	 sudo systemctl restart story-geth
   elif [ "$OPTION" == "9" ]; then
   	echo -e "$GREEN Downloading addrbook (Mandragora).$NORMAL"
