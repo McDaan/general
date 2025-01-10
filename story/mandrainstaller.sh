@@ -328,14 +328,14 @@ elif [ "$OPTION" == "3" ]; then
     if [ "$BINARY" == "story" ]; then
 		echo -e "$GREEN Downloading story binary.$NORMAL"
 			cd $HOME
-			wget https://story-geth-binaries.s3.us-west-1.amazonaws.com/story-public/story-linux-amd64-0.11.0-aac4bfe.tar.gz
-			tar -xzvf story-linux-amd64-0.11.0-aac4bfe.tar.gz
-			sudo cp $HOME/story-linux-amd64-0.11.0-aac4bfe/story /usr/local/bin/story
+			wget https://github.com/piplabs/story/releases/download/v0.13.1/story-linux-amd64
+			chmod +x story-linux-amd64
+			sudo mv $HOME/geth-linux-amd64 /usr/local/bin/story
 			story version	
 			echo -e "$GREEN Make sure story version is the one running on the network. Otherwise, download the correct one and tag @danielmandragora if you want this script be up to date (you can still modify it to change the binary versions though).$NORMAL"
 	elif [ "$BINARY" == "geth" ]; then
 		echo -e "$GREEN Downloading geth binary.$NORMAL"
-			wget https://github.com/piplabs/story-geth/releases/download/v0.9.4/geth-linux-amd64
+			wget https://github.com/piplabs/story-geth/releases/download/v0.11.0/geth-linux-amd64
 			chmod +x geth-linux-amd64
 			sudo mv $HOME/geth-linux-amd64 /usr/local/bin/story-geth
 			story-geth version
