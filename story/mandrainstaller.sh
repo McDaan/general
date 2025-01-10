@@ -47,14 +47,14 @@ EOF
 		
 			echo -e "$GREEN Downloading required binaries (geth and story).$NORMAL"
 			cd $HOME
-			wget https://github.com/piplabs/story-geth/releases/download/v0.10.0/geth-linux-amd64
+			wget https://github.com/piplabs/story-geth/releases/download/v0.11.0/geth-linux-amd64
 			chmod +x geth-linux-amd64
 			sudo mv $HOME/geth-linux-amd64 /usr/local/bin/story-geth
 			story-geth version
 			
-			wget https://github.com/piplabs/story/releases/download/v0.12.1/story-linux-amd64
+			wget https://github.com/piplabs/story/releases/download/v0.13.1/story-linux-amd64
 			chmod +x story-linux-amd64
-			sudo mv $HOME/story-linux-amd64 /usr/local/bin/story
+			sudo mv $HOME/geth-linux-amd64 /usr/local/bin/story
 			story version
 			
 			echo -e "$GREEN Initializing node.$NORMAL"
