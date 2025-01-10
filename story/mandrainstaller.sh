@@ -36,14 +36,14 @@ if [ "$OPTION" == "1" ]; then
 			sudo apt install curl git make jq build-essential gcc unzip wget lz4 aria2 -y
 			wget -c 'https://dl.google.com/go/go1.23.1.linux-amd64.tar.gz' -O go1.23.1.linux-amd64.tar.gz && sudo tar -C /usr/local/ -xzf go1.23.1.linux-amd64.tar.gz
 			rm -Rf go1.23.1.linux-amd64.tar.gz
-   sudo tee $HOME/.bash_profile <<EOF
+   sudo tee $HOME/.bashrc <<EOF
    #Go:
 export PATH="$PATH:/usr/local/go/bin"
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 export GOBIN="$GOPATH/bin"
 EOF
-			source $HOME/.bash_profile
+			source $HOME/.bashrc
 		
 			echo -e "$GREEN Downloading required binaries (geth and story).$NORMAL"
 			cd $HOME
@@ -52,9 +52,9 @@ EOF
 			sudo mv $HOME/geth-linux-amd64 /usr/local/bin/story-geth
 			story-geth version
 			
-			wget https://github.com/piplabs/story/releases/download/v0.13.1/story-linux-amd64
-			chmod +x story-linux-amd64
-			sudo mv $HOME/geth-linux-amd64 /usr/local/bin/story
+			#wget https://github.com/piplabs/story/releases/download/v0.13.1/story-linux-amd64
+			#chmod +x story-linux-amd64
+			#sudo mv $HOME/geth-linux-amd64 /usr/local/bin/story
 			story version
 			
 			echo -e "$GREEN Initializing node.$NORMAL"
