@@ -33,9 +33,9 @@ if [ "$OPTION" == "1" ]; then
         read -p "Selected answer (y/n): " ANSWER
 		if [ "$ANSWER" == "y" ]; then
 			echo -e "$GREEN Installing required dependencies.$NORMAL"
-			sudo apt install curl git make jq build-essential gcc unzip wget lz4 aria2 -y
-			wget -c 'https://dl.google.com/go/go1.23.1.linux-amd64.tar.gz' -O go1.23.1.linux-amd64.tar.gz && sudo tar -C /usr/local/ -xzf go1.23.1.linux-amd64.tar.gz
-			rm -Rf go1.23.1.linux-amd64.tar.gz
+			sudo apt install curl git make jq build-essential gcc unzip wget lz4 aria2 fail2ban -y
+			wget -c 'https://dl.google.com/go/go1.23.6.linux-amd64.tar.gz' -O go1.23.6.linux-amd64.tar.gz && sudo tar -C /usr/local/ -xzf go1.23.6.linux-amd64.tar.gz
+			rm -Rf go1.23.6.linux-amd64.tar.gz
    sudo tee $HOME/.bashrc <<EOF
    #Go:
 export PATH="$PATH:/usr/local/go/bin"
@@ -47,20 +47,20 @@ EOF
 		
 			echo -e "$GREEN Downloading required binaries (geth and story).$NORMAL"
 			cd $HOME
-			wget https://github.com/piplabs/story-geth/releases/download/v0.11.0/geth-linux-amd64
+			wget https://github.com/piplabs/story-geth/releases/download/v1.0.1/geth-linux-amd64
 			chmod +x geth-linux-amd64
 			sudo mv $HOME/geth-linux-amd64 /usr/local/bin/story-geth
 			story-geth version
 			
-			#wget https://github.com/piplabs/story/releases/download/v0.13.1/story-linux-amd64
-			#chmod +x story-linux-amd64
-			#sudo mv $HOME/geth-linux-amd64 /usr/local/bin/story
+			wget https://github.com/piplabs/story/releases/download/v1.1.1/story-linux-amd64
+			chmod +x story-linux-amd64
+			sudo mv $HOME/geth-linux-amd64 /usr/local/bin/story
 			story version
 			
 			echo -e "$GREEN Initializing node.$NORMAL"
 			echo -e "$GREEN Choose a node moniker? $NORMAL"
 			read -p "Your node noniker: " MONIKER
-			story init --network odyssey --moniker $MONIKER
+			story init --network story --moniker $MONIKER
 			
 			echo -e "$GREEN Creating service files for story and geth.$NORMAL"
 sudo tee /etc/systemd/system/story-geth.service <<EOF
@@ -70,7 +70,7 @@ Description=story-geth service
 		
 [Service]
 User=root
-ExecStart=/usr/local/bin/story-geth --odyssey --syncmode full
+ExecStart=/usr/local/bin/story-geth --story --syncmode full --syncmode full --bootnodes enode://f42110982b6ddaa4de8031f9fecb619d181902db5529a43bc9b1187debbc67771bf937b2210cbfd33babd2acbe138506596e23d0d1792ab3cb5229c5bb051544@b1.storyrpc.io:30303,enode://2ae459a7cc28b59822377deec266e24e5ed00374d7a83e2e8d0d67dd89dc2b80366c1353c7909fe81b840f6081188850677fa20dd5d262c9e3f67eb23d0be0b5@b2.storyrpc.io:30303
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
