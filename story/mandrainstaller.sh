@@ -33,7 +33,7 @@ if [ "$OPTION" == "1" ]; then
         read -p "Selected answer (y/n): " ANSWER
 		if [ "$ANSWER" == "y" ]; then
 			echo -e "$GREEN Installing required dependencies.$NORMAL"
-			sudo apt install curl git make jq build-essential gcc unzip wget lz4 aria2 fail2ban -y
+			sudo apt install curl git make jq build-essential gcc unzip wget lz4 aria2 fail2ban pv -y
 			wget -c 'https://dl.google.com/go/go1.23.6.linux-amd64.tar.gz' -O go1.23.6.linux-amd64.tar.gz && sudo tar -C /usr/local/ -xzf go1.23.6.linux-amd64.tar.gz
 			rm -Rf go1.23.6.linux-amd64.tar.gz
    sudo tee $HOME/.bashrc <<EOF
@@ -52,9 +52,9 @@ EOF
 			sudo mv $HOME/geth-linux-amd64 /usr/local/bin/story-geth
 			story-geth version
 			
-			wget https://github.com/piplabs/story/releases/download/v1.1.1/story-linux-amd64
+			wget https://github.com/piplabs/story/releases/download/v1.1.0/story-linux-amd64
 			chmod +x story-linux-amd64
-			sudo mv $HOME/geth-linux-amd64 /usr/local/bin/story
+			sudo mv $HOME/story-linux-amd64 /usr/local/bin/story
 			story version
 			
 			echo -e "$GREEN Initializing node.$NORMAL"
